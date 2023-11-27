@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trainer Blaze</title>
+    <style>
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        #container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+
+        .pokemon {
+            width: 20%;
+            padding: 20px 5%;
+        }
+
+        .pokemon img {
+            width: 100%;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-around;
+            font-size: 16px;
+        }
+    </style>
 </head>
+
 <body>
     <div id="container">
         <div class="pokemon">
             <img src="Imgs/Garchomp.png">
+            <div class="info">
+                <a class="name">Garchomp</a>
+                <a class="Level">Level 72</a>
+                <a class="Item">Lum Berry</a>
+            </div>
         </div>
         <div class="pokemon">
             <img src="Imgs/Leafeon.png">
@@ -27,4 +61,5 @@
         </div>
     </div>
 </body>
+
 </html>
