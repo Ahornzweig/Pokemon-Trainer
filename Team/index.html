@@ -20,17 +20,68 @@
 
         .pokemon {
             width: 20%;
-            padding: 20px 5%;
+            padding: 10px;
+            margin: 10px 5%;
+            background-color: #6a4343;
+            border-radius: 10px;
+            color: white;
         }
 
-        .pokemon img {
+        .pokemon .img {
             width: 100%;
+        }
+
+        .ball{}
+
+        .toggle{
+            cursor: pointer;
         }
 
         .info {
             display: flex;
             justify-content: space-around;
             font-size: 16px;
+            flex-direction: column;
+            max-height: 0;
+            transition: .3s;
+            overflow: hidden;
+        }
+
+        .toggle:hover + .info{
+            max-height: unset;
+        }
+
+        .attacks {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .attacks div {
+            width: CALC(50% - 21px);
+            padding: 8px;
+            border-radius: 10px;
+            margin: 0 5px 5px 0;
+            color: white;
+            box-shadow: 3px 3px 6px 0px #00000059;
+        }
+
+        .dragon {
+            background-color: darkslateblue;
+        }
+
+        .ground {
+            background-color: #c9ae06;
+            ;
+        }
+
+        .fire {
+            background-color: #b92b09;
+            ;
+        }
+
+        .rock {
+            background-color: #795548;
         }
     </style>
 </head>
@@ -38,27 +89,35 @@
 <body>
     <div id="container">
         <div class="pokemon">
-            <img src="Imgs/Garchomp.png">
+            
+            <img class="ball" src="Imgs/moonball2.png">
+            <img class="img" src="Imgs/Garchomp.png">
+            <div class="name toggle">Garchomp</div>
             <div class="info">
-                <a class="name">Garchomp</a>
-                <a class="Level">Level 72</a>
-                <a class="Item">Lum Berry</a>
+                <a class="level">Level 72</a>
+                <a class="item">Lum Berry</a>
+                <div class="attacks">
+                    <div class="dragon">Dragon Claw</div>
+                    <div class="ground">Earthquake</div>
+                    <div class="fire">Fire Fang</div>
+                    <div class="rock">Stone Edge</div>
+                </div>
             </div>
         </div>
         <div class="pokemon">
-            <img src="Imgs/Leafeon.png">
+            <img class="img" src="Imgs/Leafeon.png">
         </div>
         <div class="pokemon">
-            <img src="Imgs/Ninetales.png">
+            <img class="img" src="Imgs/Ninetales.png">
         </div>
         <div class="pokemon">
-            <img src="Imgs/Aggron.png">
+            <img class="img" src="Imgs/Aggron.png">
         </div>
         <div class="pokemon">
-            <img src="Imgs/Charizard-Mega_Y.png">
+            <img class="img" src="Imgs/Charizard-Mega_Y.png">
         </div>
         <div class="pokemon">
-            <img src="Imgs/Corviknight.png">
+            <img class="img" src="Imgs/Corviknight.png">
         </div>
     </div>
 </body>
