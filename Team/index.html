@@ -7,7 +7,9 @@
     <title>Trainer Blaze</title>
     <style>
         body {
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+            font-family: system-ui, Arial, sans-serif;
+            font-weight: 800;
         }
 
         #container {
@@ -19,27 +21,40 @@
         }
 
         .pokemon {
-            width: 20%;
-            padding: 10px;
-            margin: 10px 5%;
-            background-color: #6a4343;
-            border-radius: 10px;
+            width: 26%;
+            margin: 10px 3% 0;
             color: white;
-        }
-
-        .pokemon .img {
-            width: 100%;
         }
 
         .ball {
             height: 40px;
             margin: auto;
             display: block;
-            margin-top: -30px;
+            position: relative;
+            top: 21px;
+            z-index: 2;
+        }
+
+        .pokemon .img {
+            width: 100%;
+        }
+
+        .overview {
+
+            background-color: #6a4343;
+            border-radius: 10px;
+            padding: 10px;
+            z-index: 1;
+            position: relative;
         }
 
         .toggle {
             cursor: pointer;
+        }
+
+        .name {
+            font-size: 19px;
+            letter-spacing: .75px;
         }
 
         .info {
@@ -50,16 +65,53 @@
             max-height: 0;
             transition: .3s;
             overflow: hidden;
+            opacity: 0;
+            margin: -20px 0 10px;
+            background-color: #593a3a;
+            padding: 20px 10px 10px;
+            border-radius: 10px;
         }
 
-        .toggle:hover+.info {
-            max-height: 150px;
+        .info.active {
+            max-height: 250px;
+            opacity: 1;
+        }
+
+        .data {
+            display: flex;
+            padding: 8px 8px 8px 0;
+            align-items: center;
+            font-family: cursive;
+            flex-wrap: wrap;
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .data * {
+            margin-bottom: 6px;
+        }
+
+        .item {
+            height: 25px;
+            padding-right: 8px;
+        }
+
+        .nature {
+            width: 100%;
+        }
+
+        .location {
+            width: 100%;
         }
 
         .attacks {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+            font-size: 12px;
+            font-family: system-ui;
+            font-weight: 600;
+            letter-spacing: .25px;
         }
 
         .attacks div {
@@ -76,7 +128,7 @@
         }
 
         .ground {
-            background-color: #c9ae06;
+            background-color: #c99b06;
             ;
         }
 
@@ -88,6 +140,99 @@
         .rock {
             background-color: #795548;
         }
+
+        .grass {
+            background-color: rgb(85, 139, 93);
+        }
+
+        .bug {
+            background-color: rgb(169, 179, 78);
+        }
+
+        .dark {
+            background-color: #2b211d;
+        }
+
+        .ice {
+            background-color: #b1e4ec;
+        }
+
+        .flying {
+            background-color: #76d2ee;
+        }
+
+        .fairy {
+            background-color: #d897e4;
+        }
+
+        .figthing {
+            background-color: #c55f00;
+        }
+
+        .steel {
+            background-color: #849496;
+        }
+
+        @media screen and (max-width: 999px) {
+            .pokemon {
+                width: 30%;
+            }
+        }
+
+        @media screen and (max-width: 799px) {
+            .pokemon {
+                width: 40%;
+            }
+
+            .name {
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            .data {
+                font-size: 13px;
+            }
+        }
+
+        @media screen and (max-width: 650px) {
+            .pokemon {
+                width: 75%;
+            }
+        }
+
+
+
+        #container-captured {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+
+        .captured {
+            width: 75px;
+            height: 75px;
+            background-color: #593a3a;
+            position: relative;
+            border-radius: 100%;
+            margin: 10px 0;
+            padding: 5px;
+        }
+
+        .captured img {
+            max-width: 60px;
+            max-height: 60px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #container-captured .pokemon {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
 
@@ -96,11 +241,19 @@
         <div class="pokemon">
 
             <img class="ball" src="Imgs/moonball2.png">
-            <img class="img" src="Imgs/Garchomp.png">
-            <div class="name toggle">Garchomp</div>
+            <div class="overview">
+                <img class="img" src="Imgs/Garchomp.png">
+                <div class="name toggle" onclick="showInfo(this)">#0445 Garchomp</div>
+            </div>
             <div class="info">
-                <a class="level">Level 72</a>
-                <a class="item">Lum Berry</a>
+                <div class="data">
+
+                    <img class="item" src="Imgs/Items/life-orb.png">
+                    <a class="level">Level 72</a>
+                    <div class="nature">Jolly nature (+Spe, -SpA)</div>
+                    <div class="location">Met near Wayward Cave at level 7
+                    </div>
+                </div>
                 <div class="attacks">
                     <div class="dragon">Dragon Claw</div>
                     <div class="ground">Earthquake</div>
@@ -110,21 +263,143 @@
             </div>
         </div>
         <div class="pokemon">
-            <img class="img" src="Imgs/Leafeon.png">
+            <img class="ball" src="Imgs/moonball2.png">
+            <div class="overview">
+                <img class="img" src="Imgs/Leafeon.png">
+                <div class="name toggle" onclick="showInfo(this)">#0470 Leafeon</div>
+            </div>
+            <div class="info">
+                <div class="data">
+
+                    <img class="item" src="Imgs/Items/Offensivweste.png">
+                    <a class="level">Level 70</a>
+                    <div class="nature">Adamant nature (+Atk, -SpA)</div>
+                    <div class="location">Met in Hearthome City at level 20
+                    </div>
+                </div>
+                <div class="attacks">
+                    <div class="grass">Leaf Blade</div>
+                    <div class="grass">Solar Blade</div>
+                    <div class="dark">Knock Off</div>
+                    <div class="bug">X-Scissor</div>
+                </div>
+            </div>
         </div>
         <div class="pokemon">
-            <img class="img" src="Imgs/Ninetales.png">
+            <img class="ball" src="Imgs/moonball2.png">
+            <div class="overview">
+                <img class="img" src="Imgs/Ninetales.png">
+                <div class="name toggle" onclick="showInfo(this)">#0038 Ninetales</div>
+            </div>
+            <div class="info">
+                <div class="data">
+
+                    <img class="item" src="Imgs/Items/Tsitrubeere.png">
+                    <a class="level">Level 67</a>
+                    <div class="nature">Timid nature (+Spe, -Atk)</div>
+                    <div class="location">Met near Route 217 at level 34
+                    </div>
+                </div>
+                <div class="attacks">
+                    <div class="ice">Blizzard</div>
+                    <div class="fairy">Moonblast</div>
+                    <div class="ice">Aurora Veil</div>
+                    <div class="ice">Freeze-Dry</div>
+                </div>
+            </div>
         </div>
         <div class="pokemon">
-            <img class="img" src="Imgs/Aggron.png">
+            <img class="ball" src="Imgs/moonball2.png">
+            <div class="overview">
+                <img class="img" src="Imgs/Aggron.png">
+                <div class="name toggle" onclick="showInfo(this)">#0306 Aggron</div>
+            </div>
+            <div class="info">
+                <div class="data">
+
+                    <img class="item" src="Imgs/Items/Wahlband.png">
+                    <a class="level">Level 67</a>
+                    <div class="nature">Adamant nature (+Atk, -SpA)</div>
+                    <div class="location">Met inside Fuego Ironworks at level 30
+                    </div>
+                </div>
+                <div class="attacks">
+                    <div class="rock">Head Smash</div>
+                    <div class="steel">Heavy Slam</div>
+                    <div class="figthing">Superpower</div>
+                    <div class="ice">Ice Punch</div>
+                </div>
+            </div>
         </div>
         <div class="pokemon">
-            <img class="img" src="Imgs/Charizard-Mega_Y.png">
+            <img class="ball" src="Imgs/moonball2.png">
+            <div class="overview">
+                <img class="img" src="Imgs/Charizard-Mega_Y.png">
+                <div class="name toggle" onclick="showInfo(this)">#0006 Charizard</div>
+            </div>
+            <div class="info">
+                <div class="data">
+
+                    <img class="item" src="Imgs/Items/charizardite-y.png">
+                    <a class="level">Level 60</a>
+                    <div class="nature">Timid nature (+Spe, -Atk)</div>
+                    <div class="location">Met in Pallet Town at level 5
+                    </div>
+                </div>
+                <div class="attacks">
+                    <div class="fire">Heat Wave</div>
+                    <div class="grass">Solar Beam</div>
+                    <div class="flying">Tailwind</div>
+                    <div class="ground">Scorching Sands</div>
+                </div>
+            </div>
         </div>
         <div class="pokemon">
-            <img class="img" src="Imgs/Corviknight.png">
+            <img class="ball" src="Imgs/moonball2.png">
+            <div class="overview">
+                <img class="img" src="Imgs/Corviknight.png">
+                <div class="name toggle" onclick="showInfo(this)">#0823 Corviknight</div>
+            </div>
+            <div class="info">
+                <div class="data">
+
+                    <img class="item" src="Imgs/Items/leftovers.png">
+                    <a class="level">Level 57</a>
+                    <div class="nature">Adamant nature (+Atk, -SpA)</div>
+                    <div class="location">Hatched on board the S.S. Anne
+                    </div>
+                </div>
+                <div class="attacks">
+                    <div class="flying">Brave Bird</div>
+                    <div class="flying">Tailwind</div>
+                    <div class="figthing">Bulk Up</div>
+                    <div class="figthing">Body Press</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container-captured">
+        <div class="pokemon">
+            <div class="captured"><img src="Imgs/captured/crobat.png"></div>
+            <div class="captured"><img src="Imgs/captured/Weavile.png"></div>
+        </div>
+        <div class="pokemon">
+            <div class="captured"><img src="Imgs/captured/Staraptor.png"></div>
+            <div class="captured"><img src="Imgs/captured/Luxray.png"></div>
+        </div>
+        <div class="pokemon">
+            <div class="captured"><img src="Imgs/captured/Raichu.png"></div>
+            <div class="captured"><img src="Imgs/captured/Arcanine.png"></div>
         </div>
     </div>
 </body>
 
 </html>
+<script>
+
+    function showInfo(_target) {
+        let parent = _target.parentElement.parentElement;
+        parent.querySelector(".info").classList.toggle("active");
+    }
+
+</script>
