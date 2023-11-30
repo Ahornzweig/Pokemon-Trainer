@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trainer Blaze</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <style>
         body {
 
@@ -55,6 +56,17 @@
         .name {
             font-size: 19px;
             letter-spacing: .75px;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .name span {
+            line-height: 20px;
+            font-size: 30px;
+        }
+
+        .name.active span {
+            transform: rotate(180deg);
         }
 
         .info {
@@ -210,14 +222,30 @@
             justify-content: space-evenly;
         }
 
+        #container-captured .pokemon {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
         .captured {
+            position: relative;
+            z-index: 2;
+        }
+
+        .captured.active {
+            z-index: 3;
+        }
+
+        .captured .icon {
             width: 75px;
             height: 75px;
             background-color: #593a3a;
-            position: relative;
             border-radius: 100%;
             margin: 10px 0;
             padding: 5px;
+            position: relative;
+            z-index: 1;
         }
 
         .captured img {
@@ -229,9 +257,39 @@
             transform: translate(-50%, -50%);
         }
 
-        #container-captured .pokemon {
+        .info-small {
+            max-width: 0px;
+            width: calc(100% - 110px);
+            height: 75px;
+            background-color: #422b2b;
+            border-radius: 50px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            margin: 10px 0;
+            padding: 5px 20px 5px 45px;
+            font-size: 11px;
+            font-family: cursive;
+            transform: translateX(45px);
+            position: absolute;
+            top: 0;
+            opacity: 0;
+            font-weight: 500;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
+            color: transparent;
+            transition-duration: .25s;
+            transition-delay: .1s, .1s, .0s;
+            transition-property: max-width, opacity, color;
+        }
+
+        .info-small.active {
+            max-width: calc(100% - 110px);
+            opacity: 1;
+            color: white;
+            transition: .25s;
+            transition-delay: 0s, 0s, .15s;
+            transition-property: max-width, opacity, color;
         }
     </style>
 </head>
@@ -243,7 +301,11 @@
             <img class="ball" src="Imgs/moonball2.png">
             <div class="overview">
                 <img class="img" src="Imgs/Garchomp.png">
-                <div class="name toggle" onclick="showInfo(this)">#0445 Garchomp</div>
+                <div class="name toggle" onclick="showInfo(this)">#0445 Garchomp
+                    <span class="material-icons-round">
+                        expand_more
+                    </span>
+                </div>
             </div>
             <div class="info">
                 <div class="data">
@@ -266,7 +328,9 @@
             <img class="ball" src="Imgs/moonball2.png">
             <div class="overview">
                 <img class="img" src="Imgs/Leafeon.png">
-                <div class="name toggle" onclick="showInfo(this)">#0470 Leafeon</div>
+                <div class="name toggle" onclick="showInfo(this)">#0470 Leafeon<span class="material-icons-round">
+                        expand_more
+                    </span></div>
             </div>
             <div class="info">
                 <div class="data">
@@ -289,7 +353,9 @@
             <img class="ball" src="Imgs/moonball2.png">
             <div class="overview">
                 <img class="img" src="Imgs/Ninetales.png">
-                <div class="name toggle" onclick="showInfo(this)">#0038 Ninetales</div>
+                <div class="name toggle" onclick="showInfo(this)">#0038 Ninetales<span class="material-icons-round">
+                        expand_more
+                    </span></div>
             </div>
             <div class="info">
                 <div class="data">
@@ -312,7 +378,9 @@
             <img class="ball" src="Imgs/moonball2.png">
             <div class="overview">
                 <img class="img" src="Imgs/Aggron.png">
-                <div class="name toggle" onclick="showInfo(this)">#0306 Aggron</div>
+                <div class="name toggle" onclick="showInfo(this)">#0306 Aggron<span class="material-icons-round">
+                        expand_more
+                    </span></div>
             </div>
             <div class="info">
                 <div class="data">
@@ -335,7 +403,9 @@
             <img class="ball" src="Imgs/moonball2.png">
             <div class="overview">
                 <img class="img" src="Imgs/Charizard-Mega_Y.png">
-                <div class="name toggle" onclick="showInfo(this)">#0006 Charizard</div>
+                <div class="name toggle" onclick="showInfo(this)">#0006 Charizard<span class="material-icons-round">
+                        expand_more
+                    </span></div>
             </div>
             <div class="info">
                 <div class="data">
@@ -358,7 +428,9 @@
             <img class="ball" src="Imgs/moonball2.png">
             <div class="overview">
                 <img class="img" src="Imgs/Corviknight.png">
-                <div class="name toggle" onclick="showInfo(this)">#0823 Corviknight</div>
+                <div class="name toggle" onclick="showInfo(this)">#0823 Corviknight<span class="material-icons-round">
+                        expand_more
+                    </span></div>
             </div>
             <div class="info">
                 <div class="data">
@@ -380,17 +452,78 @@
     </div>
     <div id="container-captured">
         <div class="pokemon">
-            <div class="captured"><img src="Imgs/captured/crobat.png"></div>
-            <div class="captured"><img src="Imgs/captured/Weavile.png"></div>
+            <div class="captured" onclick="showInfoSmall(this)">
+                <div class="icon">
+                    <img src="Imgs/captured/crobat.png">
+                </div>
+                <div class="info-small">
+                    <a class="level">Level 62</a>
+                    <div class="nature">Jolly nature (+Spe, -SpA)</div>
+                    <div class="location">Met in Mt. Coronet at level 13
+                    </div>
+                </div>
+            </div>
+            <div class="captured" onclick="showInfoSmall(this)">
+                <div class="icon">
+                    <img src="Imgs/captured/Weavile.png">
+                </div>
+                <div class="info-small">
+                    <a class="level">Level 62</a>
+                    <div class="nature">Jolly nature (+Spe, -SpA)</div>
+                    <div class="location">Met on Route 216 at level 14
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="pokemon">
-            <div class="captured"><img src="Imgs/captured/Staraptor.png"></div>
-            <div class="captured"><img src="Imgs/captured/Luxray.png"></div>
+            <div class="captured" onclick="showInfoSmall(this)">
+                <div class="icon">
+                    <img src="Imgs/captured/Luxray.png">
+                </div>
+                <div class="info-small">
+                    <a class="level">Level 45</a>
+                    <div class="nature">Adamant nature (+Atk, -SpA)</div>
+                    <div class="location">Met near Valley Windworks at level 10
+                    </div>
+                </div>
+            </div>
+            <div class="captured" onclick="showInfoSmall(this)">
+                <div class="icon">
+                    <img src="Imgs/captured/Staraptor.png">
+                </div>
+                <div class="info-small">
+                    <a class="level">Level 40</a>
+                    <div class="nature">Jolly nature (+Spe, -SpA)</div>
+                    <div class="location">Met on Route 209 at level 16
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="pokemon">
-            <div class="captured"><img src="Imgs/captured/Raichu.png"></div>
-            <div class="captured"><img src="Imgs/captured/Arcanine.png"></div>
+            <div class="captured" onclick="showInfoSmall(this)">
+                <div class="icon">
+                    <img src="Imgs/captured/Raichu.png">
+                </div>
+                <div class="info-small">
+                    <a class="level">Level 40</a>
+                    <div class="nature">Timid nature (+Spe, -Atk)</div>
+                    <div class="location">Met in Viridian Forest at level 4
+                    </div>
+                </div>
+            </div>
+            <div class="captured" onclick="showInfoSmall(this)">
+                <div class="icon">
+                    <img src="Imgs/captured/Arcanine.png">
+                </div>
+                <div class="info-small">
+                    <a class="level">Level 60</a>
+                    <div class="nature">Calm nature (+SpD, -Atk)</div>
+                    <div class="location">Met on Route 8 at level 25
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 </body>
 
@@ -400,6 +533,12 @@
     function showInfo(_target) {
         let parent = _target.parentElement.parentElement;
         parent.querySelector(".info").classList.toggle("active");
+        parent.querySelector(".name").classList.toggle("active");
+    }
+
+    function showInfoSmall(_target) {
+        _target.classList.toggle("active");
+        _target.querySelector(".info-small").classList.toggle("active");
     }
 
 </script>
