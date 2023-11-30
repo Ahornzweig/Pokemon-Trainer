@@ -246,6 +246,7 @@
             padding: 5px;
             position: relative;
             z-index: 1;
+            cursor: pointer;
         }
 
         .captured img {
@@ -452,8 +453,8 @@
     </div>
     <div id="container-captured">
         <div class="pokemon">
-            <div class="captured" onclick="showInfoSmall(this)">
-                <div class="icon">
+            <div class="captured" >
+                <div class="icon" onclick="showInfoSmall(this)">
                     <img src="Imgs/captured/crobat.png">
                 </div>
                 <div class="info-small">
@@ -463,8 +464,8 @@
                     </div>
                 </div>
             </div>
-            <div class="captured" onclick="showInfoSmall(this)">
-                <div class="icon">
+            <div class="captured" >
+                <div class="icon" onclick="showInfoSmall(this)">
                     <img src="Imgs/captured/Weavile.png">
                 </div>
                 <div class="info-small">
@@ -476,8 +477,8 @@
             </div>
         </div>
         <div class="pokemon">
-            <div class="captured" onclick="showInfoSmall(this)">
-                <div class="icon">
+            <div class="captured" >
+                <div class="icon" onclick="showInfoSmall(this)">
                     <img src="Imgs/captured/Luxray.png">
                 </div>
                 <div class="info-small">
@@ -487,8 +488,8 @@
                     </div>
                 </div>
             </div>
-            <div class="captured" onclick="showInfoSmall(this)">
-                <div class="icon">
+            <div class="captured" >
+                <div class="icon" onclick="showInfoSmall(this)">
                     <img src="Imgs/captured/Staraptor.png">
                 </div>
                 <div class="info-small">
@@ -500,8 +501,8 @@
             </div>
         </div>
         <div class="pokemon">
-            <div class="captured" onclick="showInfoSmall(this)">
-                <div class="icon">
+            <div class="captured">
+                <div class="icon" onclick="showInfoSmall(this)">
                     <img src="Imgs/captured/Raichu.png">
                 </div>
                 <div class="info-small">
@@ -511,8 +512,8 @@
                     </div>
                 </div>
             </div>
-            <div class="captured" onclick="showInfoSmall(this)">
-                <div class="icon">
+            <div class="captured" >
+                <div class="icon" onclick="showInfoSmall(this)">
                     <img src="Imgs/captured/Arcanine.png">
                 </div>
                 <div class="info-small">
@@ -523,7 +524,7 @@
                 </div>
             </div>
         </div>
-
+        <div class="pokemon"></div>
     </div>
 </body>
 
@@ -537,8 +538,8 @@
     }
 
     function showInfoSmall(_target) {
-        _target.classList.toggle("active");
-        _target.querySelector(".info-small").classList.toggle("active");
+        _target.parentElement.classList.toggle("active");
+        _target.parentElement.querySelector(".info-small").classList.toggle("active");
     }
 
 </script>
